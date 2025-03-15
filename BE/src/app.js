@@ -83,6 +83,9 @@ app.get(`${api}/:ID`, (req, res) => {
 });
 
 app.get(`${api}/statistics/:ID`, (req, res) => {
+    const startTime = new Date();
+    console.log(`[STATS] Request for hash ${req.params.ID} started at ${startTime.toUTCString()}.`);
+
     if(cache[req.params.ID]) {
         const resObj = {
             comparisons: []
@@ -90,6 +93,10 @@ app.get(`${api}/statistics/:ID`, (req, res) => {
         resObj.comparisons.push(utils.messageCount(cache[req.params.ID]));
         resObj.comparisons.push(utils.avgResponseTime(cache[req.params.ID]));
         resObj['topWords'] = utils.topFiveWords(cache[req.params.ID]);
+        const endTime = new Date();
+        console.log(`[STATS] Request for hash ${req.params.ID} ended at ${endTime.toUTCString()}.`);
+        console.log(`[STATS] Took ${endTime - startTime} ms to complete.`);
+        res.status(200).json(resObj);
     } else {
         res.status(404).json({ "error": "Object not found" });
     }
