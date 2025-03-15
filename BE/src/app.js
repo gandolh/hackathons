@@ -67,9 +67,12 @@ app.delete(`${api}/clearCache`, (req, res) => {
 });
 
 app.get(`${api}/mockStats`, (req, res) => {
-    const resObj = new Array();
-    resObj.push(utils.messageCount(utils.messages))
-    resObj.push(utils.avgResponseTime(utils.messages));
+    const resObj = {
+        comparisons: []
+    }
+    resObj.comparisons.push(utils.messageCount(utils.messages))
+    resObj.comparisons.push(utils.avgResponseTime(utils.messages));
+    resObj['topWords'] = utils.topFiveWords(utils.messages);
     res.status(200).json(resObj);
 });
 
@@ -79,10 +82,18 @@ app.get(`${api}/:ID`, (req, res) => {
         : res.status(404).json({ "error": "Object not found" });
 });
 
-
-// app.get(`${api}/statistics/:ID`, (req, res) => {
-
-// });
+app.get(`${api}/statistics/:ID`, (req, res) => {
+    if(cache[req.params.ID]) {
+        const resObj = {
+            comparisons: []
+        };
+        resObj.comparisons.push(utils.messageCount(cache[req.params.ID]));
+        resObj.comparisons.push(utils.avgResponseTime(cache[req.params.ID]));
+        resObj['topWords'] = utils.topFiveWords(cache[req.params.ID]);
+    } else {
+        res.status(404).json({ "error": "Object not found" });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Backend listening on port ${port}`)

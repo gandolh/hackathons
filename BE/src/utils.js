@@ -1,5 +1,18 @@
 const regEx = /[0-9a-zA-ZăâîșțĂÂÎȘȚ\'\-\_]+/gi;
 
+function sentencesToWords(messageArray) {
+    const messages = new Object();
+    for( const message of messageArray ) {
+        if(messages[message.msgSender]) {
+            messages[message.msgSender].push(message.msgContent);
+        } else {
+            messages[message.msgSender] = new Array();
+            messages[message.msgSender].push(message.msgContent);
+        }
+    }
+    return messages;
+}
+
 function wordCount(messages) {
     const stats = new Object();
     for ( const key of Object.keys(messages) ) {
@@ -29,20 +42,26 @@ function wordCount(messages) {
     return stats;
 }
 
-exports.generateStatistics = function generateStatistics(messageArray) {
-    const messages = new Object();
-    const topFiveWordsArray = new Object();
-
-    // stats by words
-    // count of messages in a month
-
-    
-
+exports.topFiveWords = function topFiveWords(messageArray) {
+    // All the words in the messages
+    const messages = sentencesToWords(messageArray);
     const stats = wordCount(messages);
-    
-    // topFiveWordsArray[key] = Object.entries(stats[key]).sort((a, b) => b[1] - a[1]).slice(0,5);
 
-    return {"messages": messages, "stats": stats};
+    const topFive = new Object();
+    const returnObject = {};    
+
+    for(const key of Object.keys(stats)) {
+        topFive[key] = Object.entries(stats[key]).sort((a, b) => b[1] - a[1]).slice(0,5);
+        returnObject[key] = new Array();
+        for(const word of topFive[key]) {
+            returnObject[key].push({
+                'word': word[0],
+                'count': word[1]
+            });
+        }
+    }
+
+    return returnObject;
 };
 
 exports.messageCount = function messageCount(messageArray) {
@@ -53,17 +72,7 @@ exports.messageCount = function messageCount(messageArray) {
         'youLabel': '',
         'otherLabel': '',
     };
-    const messages = new Object();
-
-    // Messages
-    for( const message of messageArray ) {
-        if(messages[message.msgSender]) {
-            messages[message.msgSender].push(message.msgContent);
-        } else {
-            messages[message.msgSender] = new Array();
-            messages[message.msgSender].push(message.msgContent);
-        }
-    }
+    const messages = sentencesToWords(messageArray);
 
     returnObject.youLabel = Object.keys(messages)[0];
     returnObject.youValue = messages[returnObject.youLabel].length;
@@ -90,12 +99,14 @@ exports.avgResponseTime = function avgResponseTime(messageArray) {
         if(sender !== messageArray[i].msgSender) {
             if(!averageTime[sender]) averageTime[sender] = new Array();
 
-            averageTime[sender].push( (new Date(messageArray[i + 1].msgDate) - new Date(messageArray[i].msgDate)) / 1000 / 60 );
+            // Average time in minutes
+            averageTime[sender].push( (new Date(messageArray[i + 1].msgDate) - new Date(messageArray[i].msgDate)) / 60000 );
         }
     };
 
     returnObject.youLabel = Object.keys(averageTime)[0];
     returnObject.youValue = averageTime[returnObject.youLabel].reduce((acc, val) => acc + val, 0) / averageTime[returnObject.youLabel].length;
+
     returnObject.otherLabel = Object.keys(averageTime)[1];
     returnObject.otherValue = averageTime[returnObject.otherLabel].reduce((acc, val) => acc + val, 0) / averageTime[returnObject.otherLabel].length;
 
@@ -354,12 +365,3 @@ exports.messages = [
       "msgContent": "nu chiar"
     }
   ]  
-
-/**
- [
-  {"msgDate":"2022-09-09T06:59:00.000Z","msgSender":"Guși","msgContent":"locație: https://maps.google.com/?q=45.0664656,23.2943729"},
-  {"msgDate":"2022-09-09T06:59:00.000Z","msgSender":"Guși","msgContent":"locație în timp real distribuită\n"},
-  {"msgDate":"2022-09-09T07:02:00.000Z","msgSender":"Bubu","msgContent":"Aight i'm here"},
-  {"msgDate":"2022-09-09T07:02:00.000Z","msgSender":"Bubu","msgContent":"Vad ca e poarta si gardieni la intrare"}
- ]
- */
