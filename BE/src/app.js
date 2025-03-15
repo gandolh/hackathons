@@ -1,3 +1,4 @@
+const utils = require('./utils');
 const express = require('express');
 const cors = require('cors');
 const hash = require('object-hash');
@@ -6,8 +7,7 @@ const app = express();
 const port = 4000;
 
 const api = '/api';
-
-let cache = {};
+const cache = {};
 
 app.use(express.json({ limit: "50mb" }));
 
@@ -47,7 +47,7 @@ app.post(`${api}/sendFile`, (req, res) => {
     } else {
         // Add to DB with hash as ID, return hash only
         cache[requestHash] = req.body;
-        res.status(201).json({ "ID": requestHash, "data": cache[requestHash] });
+        res.status(201).json({ "MD5": requestHash });
     }
 });
 
@@ -55,11 +55,28 @@ app.get(`${api}/getCache`, (req, res) => {
     res.status(200).json(cache);
 });
 
+app.delete(`${api}/clearCache`, (req, res) => {
+    cache = {};
+    res.status(200).json({ "message": "Cache cleared!" });
+});
+
+app.get(`${api}/mockStats`, (req, res) => {
+    const resObj = new Array();
+    resObj.push(utils.messageCount(utils.messages))
+    resObj.push(utils.avgResponseTime(utils.messages));
+    res.status(200).json(resObj);
+});
+
 app.get(`${api}/:ID`, (req, res) => {
     cache[req.params.ID]
         ? res.status(200).json(cache[req.params.ID])
         : res.status(404).json({ "error": "Object not found" });
 });
+
+
+// app.get(`${api}/statistics/:ID`, (req, res) => {
+
+// });
 
 app.listen(port, () => {
     console.log(`Backend listening on port ${port}`)
