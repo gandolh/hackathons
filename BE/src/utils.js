@@ -1,4 +1,4 @@
-const regEx = /[0-9a-zA-ZăâîșțĂÂÎȘȚ\'\-\_]+/gi;
+const regEx = /[0-9a-zA-ZăâîșțĂÂÎȘȚ\'\-\_]{3,}/gi;
 
 const monthNames = [
   "January",
@@ -27,6 +27,7 @@ function sentencesToWords(messageArray) {
     }
     return messages;
 }
+exports.sentencesToWords = sentencesToWords;
 
 function wordCount(messages) {
     const stats = new Object();
@@ -56,8 +57,9 @@ function wordCount(messages) {
     }
     return stats;
 }
+exports.wordCount = wordCount;
 
-exports.topFiveWords = function topFiveWords(messageArray) {
+function topFiveWords(messageArray) {
     // All the words in the messages
     const messages = sentencesToWords(messageArray);
     const stats = wordCount(messages);
@@ -78,8 +80,9 @@ exports.topFiveWords = function topFiveWords(messageArray) {
 
     return returnObject;
 };
+exports.topFiveWords = topFiveWords;
 
-exports.messageCount = function messageCount(messageArray) {
+function messageCount(messageArray) {
     const returnObject = {
         'title': 'Message Count',
         'youValue': '',
@@ -96,8 +99,9 @@ exports.messageCount = function messageCount(messageArray) {
 
     return returnObject;
 }
+exports.messageCount = messageCount;
 
-exports.avgResponseTime = function avgResponseTime(messageArray) {
+function avgResponseTime(messageArray) {
     // Check name and time sent.
     const returnObject = {
         title: "Average Response Time",
@@ -127,8 +131,9 @@ exports.avgResponseTime = function avgResponseTime(messageArray) {
 
     return returnObject;
 }
+exports.avgResponseTime = avgResponseTime;
 
-exports.messagesPerMonth = function messagesPerMonth(messageArray) {
+function messagesPerMonth(messageArray) {
   const returnObject = {
       months: []
   };
@@ -151,7 +156,6 @@ exports.messagesPerMonth = function messagesPerMonth(messageArray) {
         } else {
           if(!returnObject[person][returnObject.months.length -1]) returnObject[person].push(1);
           else returnObject[person][returnObject.months.length - 1] += 1;
-          console.log(returnObject[person]);
         }
       }
       start = i + 1;
@@ -160,6 +164,7 @@ exports.messagesPerMonth = function messagesPerMonth(messageArray) {
 
   return returnObject;
 }
+exports.messagesPerMonth = messagesPerMonth;
 
 exports.messages = [
     {
