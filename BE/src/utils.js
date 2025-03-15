@@ -1,5 +1,20 @@
 const regEx = /[0-9a-zA-ZăâîșțĂÂÎȘȚ\'\-\_]+/gi;
 
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 function sentencesToWords(messageArray) {
     const messages = new Object();
     for( const message of messageArray ) {
@@ -111,6 +126,39 @@ exports.avgResponseTime = function avgResponseTime(messageArray) {
     returnObject.otherValue = averageTime[returnObject.otherLabel].reduce((acc, val) => acc + val, 0) / averageTime[returnObject.otherLabel].length;
 
     return returnObject;
+}
+
+exports.messagesPerMonth = function messagesPerMonth(messageArray) {
+  const returnObject = {
+      months: []
+  };
+
+  let start = 0;
+  let end = 0;
+
+  for(let i = 0; i < messageArray.length - 1; i++) {
+    let currentMessageMonth = new Date(messageArray[i].msgDate).getUTCMonth();
+    let nextMessageMonth = new Date(messageArray[i + 1].msgDate).getUTCMonth();
+    if(currentMessageMonth !== nextMessageMonth) {
+      end = i;
+      let dateToAdd = `${monthNames[new Date(messageArray[start].msgDate).getUTCMonth()]} ${new Date(messageArray[start].msgDate).getUTCFullYear()}`
+      returnObject.months.push(dateToAdd);
+      for(let j = start; j <= end; j++) {
+        let person = messageArray[j].msgSender;
+        if(!returnObject[person]) {
+          returnObject[person] = new Array();
+          returnObject[person].push(1);
+        } else {
+          if(!returnObject[person][returnObject.months.length -1]) returnObject[person].push(1);
+          else returnObject[person][returnObject.months.length - 1] += 1;
+          console.log(returnObject[person]);
+        }
+      }
+      start = i + 1;
+    }
+  }
+
+  return returnObject;
 }
 
 exports.messages = [
