@@ -85,8 +85,8 @@ function avgResponseTime(messageArray) {
     title: 'Avg Response Time',
     youValue: `${avg(averageTime[keys[0]] || [])} min`,
     otherValue: `${avg(averageTime[keys[1]] || [])} min`,
-    youLabel: keys[0] ?? 'You',
-    otherLabel: keys[1] ?? 'Other',
+    youLabel: 'You',
+    otherLabel: 'Other',
   };
 }
 

@@ -115,7 +115,7 @@ export default function Dashboard() {
           Yappinator
         </span>
         <span className="text-label-sm text-[var(--outline)] mt-2 md:mt-0">
-          © 2024 Yappinator One Thousand. No yapping left behind.
+          © {new Date().getFullYear()} Yappinator One Thousand. No yapping left behind.
         </span>
       </footer>
     </div>

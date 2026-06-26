@@ -132,7 +132,7 @@ export default function UploadFile() {
       </div>
 
       <footer className="fixed bottom-0 py-6 text-label-sm text-[var(--outline-variant)]">
-        © 2024 Yappinator One Thousand
+        © {new Date().getFullYear()} Yappinator One Thousand
       </footer>
     </div>
   )
