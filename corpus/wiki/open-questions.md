@@ -10,12 +10,6 @@ Only genuinely unresolved questions live here. Delete an entry the moment it's a
 
 ---
 
-## Old BE/ and frontend/ directories
-
-`BE/` and `frontend/` still exist at the repo root. They are superseded by `packages/be` and `packages/fe`. Should they be deleted? (They're kept for now so git history diffs remain readable.)
-
----
-
 ## Google OAuth
 
 Deferred. See `corpus/todos/2026-06-26-google-oauth.md`.
