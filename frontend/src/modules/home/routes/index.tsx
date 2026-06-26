@@ -2,7 +2,6 @@ import { createBrowserRouter, redirect } from "react-router";
 import { queryClient } from "@/lib/queryClient";
 import Dashboard from "../components/Dashboard";
 import { Home } from "../components/Home";
-import { getConvById } from "../api";
 import { getConversationQuery } from "../querries";
 
 const checkConvId = () => {

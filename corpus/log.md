@@ -1,0 +1,34 @@
+# Log
+
+Chronological record of every meaningful corpus change. Newest entries at the bottom.
+
+---
+
+## [2026-06-26] maintenance | Bootstrap corpus
+
+Initialized corpus skeleton and seeded all five wiki spine pages from existing codebase knowledge. No briefs or todos filed yet. Covers: overview, architecture, decisions (package upgrade + TS fixes), status, open-questions.
+
+---
+
+## [2026-06-26] ingest | Stitch design system + major refactor
+
+Large batch of changes applied in one session:
+
+**Stitch design** (`stitch_yappinator_chat_wrapped.zip`): adopted the "Yappinator One Thousand" Terminal-Luxe dark theme. New wiki page: [design.md](wiki/design.md). All CSS tokens rewritten in `packages/fe/src/index.css`. All dashboard cards (ComparisonCard, TopWordsCard, RedFlagsCard, MessagesPerMonthChart) rewritten to match. Upload and Dashboard screens redesigned.
+
+**Monorepo restructure**: repo converted to npm workspaces. Three packages created:
+- `@yapp/shared` — shared TypeScript types
+- `@yapp/be` — Express 5 backend (was `BE/`)
+- `@yapp/fe` — Vite/React frontend (was `frontend/`)
+
+**Database migration**: MongoDB + Mongoose replaced by SQLite (`better-sqlite3`, WAL mode). Schema: `users` + `conversations` tables.
+
+**Auth**: Email/password auth added end-to-end — `POST /api/auth/register` + `/login`, bcryptjs password hashing, JWT (7d), localStorage token, axios Bearer interceptor, route guards, Login + Register pages in FE.
+
+**Real API wired**: `getConvById` now calls real `GET /api/:ID`; mock data removed.
+
+**Package versions pinned**: all `^`/`~` removed from all `package.json` files.
+
+**Todo filed**: [google-oauth.md](todos/2026-06-26-google-oauth.md) — Add Google OAuth as a second login option.
+
+Build verified: `npm run build -w packages/fe` passes (0 errors).

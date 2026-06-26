@@ -26,8 +26,9 @@ export const Chart = ({ data, children }: ChartProps) => {
 
     React.Children.forEach(children, (child) => {
         if (React.isValidElement(child)) {
+            const props = child.props as { dataKey?: string }
             if (child.type === ChartLine) {
-                dataKeys.push(child.props.dataKey)
+                if (props.dataKey) dataKeys.push(props.dataKey)
                 lineComponents.push(child)
             } else {
                 otherComponents.push(child)
@@ -87,7 +88,7 @@ export const ChartYAxis = () => {
     return <YAxis />
 }
 
-export const ChartTooltip = ({ children }: { children: React.ReactNode }) => {
+export const ChartTooltip = ({ children: _children }: { children: React.ReactNode }) => {
     return (
         <Tooltip
             content={({ active, payload, label }) => {

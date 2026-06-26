@@ -76,7 +76,7 @@ export async function getCache() {
     
 }
 
-export async function getConvById(convId : string){
-    // return await api.get(`/api/${convId}`)
+export async function getConvById(_convId : string){
+    // return await api.get(`/api/${_convId}`)
     return fakeCall(MOCK_DASHBOARD_DATA)
 }

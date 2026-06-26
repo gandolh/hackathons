@@ -62,7 +62,6 @@ export function MessagesPerMonthChart({ data }: {
         },
         markers: {
             size: 6,
-            colors: ["#ffffff"],
             strokeColors: ["#3b82f6", "#a855f7"],
             strokeWidth: 3,
         },
@@ -99,9 +98,7 @@ export function MessagesPerMonthChart({ data }: {
             horizontalAlign: "center",
             fontSize: "14px",
             markers: {
-                width: 10,
-                height: 10,
-                radius: 50,
+                size: 5,
             },
             itemMargin: {
                 horizontal: 15,
