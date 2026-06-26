@@ -18,7 +18,8 @@ Monorepo restructure complete. Build is clean (`npm run build -w packages/fe` �
 | Upload flow | ✅ File input → parseWapp → POST (auth-gated) → navigate dashboard |
 | Dashboard | ✅ Real API call wired (no mock) |
 | SQLite persistence | ✅ users + conversations tables, WAL mode |
-| Design system | ✅ Stitch Terminal-Luxe dark applied (tokens, fonts, cards, chart) |
+| Design system | ✅ Stitch Terminal-Luxe dark applied — font classes fixed 2026-06-26 |
+| UI test coverage | ✅ 4 test plans, Playwright run complete — see [test-plans/RESULTS.md](../test-plans/RESULTS.md) |
 | Old BE/ and frontend/ dirs | ⚠️ Still present in repo root for git history — not actively used |
 
 ## Recent changes (2026-06-26)

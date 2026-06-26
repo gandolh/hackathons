@@ -24,6 +24,12 @@ Front door. Find what you need here; drill into the linked file.
 - `briefs/done/` — completed (immutable)
 - `briefs/superseded/` — obsoleted (immutable)
 
+## Test Plans
+
+- [test-plans/index.md](test-plans/index.md) — catalog + run instructions
+- [test-plans/RESULTS.md](test-plans/RESULTS.md) — latest run results + audit findings (2026-06-26)
+
 ## Todos
 
 - [2026-06-26-google-oauth.md](todos/2026-06-26-google-oauth.md) — Add Google OAuth login (deferred)
+- [2026-06-26-ui-audit-findings.md](todos/2026-06-26-ui-audit-findings.md) — Fix 5 findings from UI audit (F-02 thru F-07)

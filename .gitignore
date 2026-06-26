@@ -134,3 +134,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Playwright MCP scratch dir
+.playwright-mcp/
+
+# Playwright screenshots and traces (build artifacts)
+playwright/screenshots/
+playwright/**/*.png
+playwright/**/*.jpeg
+playwright/**/*.webm
+playwright/**/*.zip
+.playwright-mcp/

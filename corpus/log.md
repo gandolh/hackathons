@@ -32,3 +32,22 @@ Large batch of changes applied in one session:
 **Todo filed**: [google-oauth.md](todos/2026-06-26-google-oauth.md) — Add Google OAuth as a second login option.
 
 Build verified: `npm run build -w packages/fe` passes (0 errors).
+
+---
+
+## [2026-06-26] maintenance | Playwright UI test run + audit
+
+Set up test infrastructure (`corpus/test-plans/`, `playwright/`). Wrote four test plans (TP-01 auth, TP-02 upload, TP-03 dashboard, TP-04 UI/UX audit). Ran Playwright browser sessions against live BE (port 4000) + FE (port 5173) servers.
+
+**Results**: TP-01 PASS, TP-02 PASS (API round-trip confirmed; file chooser MCP limitation noted as F-05), TP-03 PASS, TP-04 PASS w/ findings.
+
+**Bug fixed during run (F-01)**: `@theme inline` in `index.css` was missing `--font-display`, `--font-body`, `--font-data` declarations. Tailwind v4 never generated the font utility classes. All data values were rendering in Inter instead of JetBrains Mono. Fixed by adding the three declarations. Verified with Playwright evaluate — JetBrains Mono now active.
+
+**Remaining findings filed as todo** [2026-06-26-ui-audit-findings.md](todos/2026-06-26-ui-audit-findings.md):
+- F-02: Duplicate ApexCharts legend (add `legend: { show: false }`)
+- F-03: AuthPage missing `<main>`/`<header>` landmarks
+- F-04: `--outline` color contrast borderline (~4.1:1, needs 4.5:1)
+- F-06: "Avg Response Time" card shows sender names not "You"/"Other"
+- F-07: Copyright year hardcoded as 2024
+
+Impeccable audit score: **15/20** (Good). No AI tells — Terminal-Luxe dark aesthetic intact. Full results in [test-plans/RESULTS.md](test-plans/RESULTS.md).
