@@ -135,6 +135,12 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+packages/be/data/
+
 # Playwright MCP scratch dir
 .playwright-mcp/
 
