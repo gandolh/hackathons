@@ -37,15 +37,18 @@ export function AuthPage({ mode }: AuthPageProps) {
   return (
     <div className="min-h-screen bg-[var(--background)] flex flex-col items-center justify-center px-5">
       {/* Brand */}
-      <h1
-        className="font-display font-black text-[var(--primary)] uppercase mb-10 text-center"
-        style={{ fontSize: "clamp(28px,6vw,48px)", letterSpacing: "-0.04em", lineHeight: 1.1 }}
-      >
-        Yappinator <span className="text-[var(--outline)]">1000</span>
-      </h1>
+      <header className="text-center mb-10">
+        <h1
+          className="font-display font-black text-[var(--primary)] uppercase"
+          style={{ fontSize: "clamp(28px,6vw,48px)", letterSpacing: "-0.04em", lineHeight: 1.1 }}
+        >
+          Yappinator <span className="text-[var(--outline)]">1000</span>
+        </h1>
+      </header>
 
       {/* Form card */}
-      <div className="w-full max-w-[400px] bg-[var(--surface-container)] border border-[var(--outline-variant)] rounded-sm p-8 flex flex-col gap-6">
+      <main className="w-full max-w-[400px]">
+      <div className="bg-[var(--surface-container)] border border-[var(--outline-variant)] rounded-sm p-8 flex flex-col gap-6">
         <h2 className="text-label-sm text-[var(--on-surface-variant)]">
           {mode === "login" ? "Sign in to your account" : "Create an account"}
         </h2>
@@ -116,6 +119,7 @@ export function AuthPage({ mode }: AuthPageProps) {
           )}
         </p>
       </div>
+      </main>
     </div>
   )
 }

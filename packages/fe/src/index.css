@@ -14,7 +14,7 @@
   --surface-container-highest:#32353c;
   --on-surface:               #e1e2ec;
   --on-surface-variant:       #c2c6d6;
-  --outline:                  #8c909f;
+  --outline:                  #9ea2b0;
   --outline-variant:          #424754;
   --primary:                  #adc6ff;
   --on-primary:               #002e6a;
@@ -43,6 +43,10 @@
 }
 
 @theme inline {
+  --font-display: 'Geist', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-data:    'JetBrains Mono', monospace;
+
   --color-background:                var(--background);
   --color-foreground:                var(--foreground);
   --color-card:                      var(--card);
@@ -84,7 +88,7 @@
   body {
     background-color: var(--background);
     color: var(--on-surface);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
   }
   ::-webkit-scrollbar { width: 6px; height: 6px; }

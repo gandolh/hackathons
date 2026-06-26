@@ -33,25 +33,18 @@ export function MessagesPerMonthChart({ data }: {
     },
     xaxis: {
       categories: data.months,
-      labels: { style: { colors: "#8c909f", fontSize: "11px" } },
+      labels: { style: { colors: "#9ea2b0", fontSize: "11px" } },
       axisBorder: { color: "#424754" },
       axisTicks: { color: "#424754" },
     },
     yaxis: {
       labels: {
-        style: { colors: "#8c909f", fontSize: "11px" },
+        style: { colors: "#9ea2b0", fontSize: "11px" },
         formatter: (v) => String(Math.round(v)),
       },
       min: 0,
     },
-    legend: {
-      position: "top",
-      horizontalAlign: "right",
-      fontSize: "12px",
-      fontFamily: "'Inter', sans-serif",
-      labels: { colors: "#c2c6d6" },
-      markers: { size: 5, shape: "square" },
-    },
+    legend: { show: false },
     tooltip: {
       theme: "dark",
       y: { formatter: (v) => `${v} messages` },
