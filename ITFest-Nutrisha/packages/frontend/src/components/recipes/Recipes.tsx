@@ -1,0 +1,53 @@
+import { Container, SimpleGrid } from "@mantine/core";
+import IngredientListCard from "./IngredientListCard";
+import RecipesCard from "./RecipesCard";
+import ChatAssistant from "./ChatAssistant";
+import EmptyCard from "./EmptyCard";
+import React from "react";
+import SelectedRecipeCard from "./SelectedRecipeCard";
+import { GenerateNewRecipes, getRecipesByIngredients } from "./RecipesApiCallers";
+
+
+
+const Recipes = () => {
+    const [ingredientList, setIngredientList] = React.useState<string[]>([]);
+    const [recipes, setRecipes] = React.useState<Recipe[]>([]);
+    const [selectedRecipe, setSelectedRecipe] = React.useState<Recipe | null>(null);
+    const [loadingRecipies, setLoadingRecipies] = React.useState<boolean>(false);
+
+
+
+    const HandleSearchRecipes = () => {
+        getRecipesByIngredients(ingredientList).then(recipes => {
+            setRecipes(recipes);
+        })
+    }
+
+    const HandleGenerateRecipes = () => {
+        setLoadingRecipies(true);
+        GenerateNewRecipes(ingredientList).then((_) => {
+            HandleSearchRecipes();
+            setLoadingRecipies(false);
+        });
+      }
+
+
+    return (<div>
+        <Container fluid pt={30} className="flex flex-col items-center">
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} className="w-full" spacing="lg">
+                <IngredientListCard ingredientList={ingredientList} setIngredientList={setIngredientList} />
+                <RecipesCard
+                    OnSearchRecipes={HandleSearchRecipes}
+                    recipes={recipes} selectedRecipe={selectedRecipe}
+                    setSelectedRecipe={setSelectedRecipe} 
+                    onGenerateRecipes={HandleGenerateRecipes}
+                    loadingRecipies={loadingRecipies}
+                    />
+                {selectedRecipe === null ? <EmptyCard /> : <SelectedRecipeCard selectedRecipe={selectedRecipe} />}
+            </SimpleGrid>
+            <ChatAssistant />
+        </Container>
+    </div>);
+}
+
+export default Recipes;

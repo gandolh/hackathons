@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+
+# Env files
+.env
+packages/backend/.env
+OllamaAPI/.env
+
+# Editor / OS
+.idea/
+.DS_Store
+
+# Python
+__pycache__/
+.venv/
+venv/
+
+# Playwright / UI audit artifacts
+playwright/screenshots/
+playwright/**/*.png
+playwright/**/*.jpeg
+playwright/**/*.webm
+playwright/**/*.zip
+.playwright-mcp/
