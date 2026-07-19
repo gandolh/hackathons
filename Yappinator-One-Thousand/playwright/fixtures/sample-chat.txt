@@ -1,0 +1,16 @@
+1/1/24, 10:00 - Alice: Hey, how are you?
+1/1/24, 10:01 - Bob: I'm great, thanks! How about you?
+1/1/24, 10:02 - Alice: Doing well! Did you see the game last night?
+1/1/24, 10:03 - Bob: Yes! It was amazing. I can't believe they won.
+1/1/24, 10:04 - Alice: Right? Such a good match.
+1/1/24, 10:05 - Bob: We should watch the next one together.
+1/1/24, 10:06 - Alice: Definitely! Let's plan that.
+1/1/24, 10:07 - Bob: Sure! I'll send you the details later.
+1/1/24, 10:08 - Alice: Perfect, talk soon!
+1/1/24, 10:09 - Bob: Take care!
+2/1/24, 09:00 - Alice: Morning! Ready for today?
+2/1/24, 09:01 - Bob: Always! Let's do this.
+2/1/24, 09:02 - Alice: Great energy! I love it.
+2/1/24, 09:03 - Bob: Thanks! You too, seriously.
+2/1/24, 09:04 - Alice: Appreciate that. Talk later.
+2/1/24, 09:05 - Bob: Sounds good. Later!
