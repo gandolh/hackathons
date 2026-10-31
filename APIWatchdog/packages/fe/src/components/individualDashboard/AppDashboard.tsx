@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { IApp, IEndpoint } from '@apiwatchdog/shared';
-import { Status } from '@apiwatchdog/shared';
 import { getAppWithLogs, markReportFixed } from '../../api/apps';
 import { useAuth } from '../auth/AuthContext';
 import StatusBadge, { statusColor, statusIcon } from '../publicDashboard/StatusBadge';

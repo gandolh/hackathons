@@ -19,6 +19,5 @@
       "@apiwatchdog/shared": ["../shared/src/index.ts"]
     }
   },
-  "include": ["src", "../shared/src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "../shared/src"]
 }

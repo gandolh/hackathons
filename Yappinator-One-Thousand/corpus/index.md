@@ -33,3 +33,4 @@ Front door. Find what you need here; drill into the linked file.
 
 - [2026-06-26-google-oauth.md](todos/2026-06-26-google-oauth.md) — Add Google OAuth login (deferred)
 - [2026-06-26-ui-audit-findings.md](todos/2026-06-26-ui-audit-findings.md) — Fix 5 findings from UI audit (F-02 thru F-07)
+- [2026-11-01-fixture-date-format.md](todos/2026-11-01-fixture-date-format.md) — The test fixture's dates are in a format the parser skips

@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "dev": "concurrently \"npm run dev -w packages/be\" \"npm run dev -w packages/fe\"",
-    "build": "npm run build -w packages/shared && npm run build -w packages/fe",
+    "build": "npm run build -w packages/fe",
     "start": "npm run start -w packages/be"
   },
   "devDependencies": {

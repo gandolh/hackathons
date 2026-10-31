@@ -49,3 +49,7 @@ Seed script: `playwright/scripts/seed.cjs` (targets `packages/be/data/watchdog.d
 - Moved `stitch_design/` → `corpus/design/` so Stitch HTML/PNG/DESIGN.md files are part of the corpus.
 - Added `corpus/wiki/design.md` — synthesises color tokens, typography, spacing, screen inventory, and known deviations.
 - Updated `corpus/index.md` with design section, test plans section, and todos table.
+
+## [2026-11-01] maintenance | README added, build fixed, overview corrected
+
+The project had no README; it has one now, with two screenshots taken from a local run that polled a stub on port 3999. The images and their recipe live in the repo-wide `docs/images/`. `npm run build` failed in `packages/fe` and passes again: `tsconfig.json` no longer references `tsconfig.node.json`, which was not a composite project, `src/vite-env.d.ts` adds Vite's client types for `import.meta.env` and the CSS import, and `AppDashboard.tsx` lost an unused import. `wiki/overview.md` still described the pre-2026-06-26 layout, with Mongoose, Mantine, Google OAuth and the `backend/`, `frontend/` and `testAPI/` folders; it now matches `wiki/status.md`.

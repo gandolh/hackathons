@@ -18,17 +18,18 @@ breakdown pie chart, and a bug-report inbox where users can file issues.
 
 | Component | Location | Role |
 |---|---|---|
-| Backend API | `backend/` | Express 5 + Mongoose; polls endpoints, stores logs, serves REST |
-| Frontend SPA | `frontend/` | React 19 + Mantine 9 + Vite 6; three main views |
-| Test API | `testAPI/` | Small stub server used for local endpoint testing |
+| Backend API | `packages/be/` | Express 5 + better-sqlite3; polls endpoints, stores logs, serves REST |
+| Frontend SPA | `packages/fe/` | React 19 + Vite 6 + Tailwind v3; three main views |
+| Shared types | `packages/shared/` | `@apiwatchdog/shared`, TypeScript types used by both, no build step |
 
 ## Top-level repo layout
 
 ```
-backend/    Express 5 API server (TypeScript)
-frontend/   Vite 6 / React 19 SPA (TypeScript)
-testAPI/    Local stub for testing endpoint polling
-corpus/     This wiki + work tracker
+packages/be/      Express 5 API server (TypeScript), SQLite in packages/be/data/
+packages/fe/      Vite 6 / React 19 SPA (TypeScript)
+packages/shared/  Types shared by be and fe
+playwright/       How to run the UI test plans, and a seed script
+corpus/           This wiki + work tracker
 ```
 
 ## The three frontend views
@@ -42,6 +43,6 @@ corpus/     This wiki + work tracker
 
 ## Auth
 
-Email/password (bcrypt) + Google OAuth (via `@react-oauth/google`). Auth state
+Email and password, hashed with bcrypt; Google OAuth was removed on 2026-06-26. Auth state
 is stored in `localStorage` and React Context (`AuthContext`). No JWT or
 server-side sessions — the backend trusts the email sent from the client.

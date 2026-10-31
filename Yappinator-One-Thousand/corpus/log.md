@@ -51,3 +51,7 @@ Set up test infrastructure (`corpus/test-plans/`, `playwright/`). Wrote four tes
 - F-07: Copyright year hardcoded as 2024
 
 Impeccable audit score: **15/20** (Good). No AI tells — Terminal-Luxe dark aesthetic intact. Full results in [test-plans/RESULTS.md](test-plans/RESULTS.md).
+
+## [2026-11-01] maintenance | README rewritten, root build fixed, fixture finding
+
+The README was two lines; it now says what the app does and how to run it, with two screenshots from a local run on a generated chat. The images and their recipe live in the repo-wide `docs/images/`. The root `npm run build` called a `build` script that `packages/shared` does not have, since the shared types are used as source; it now builds `packages/fe` only. On Linux, npm skipped the native `lightningcss` and Tailwind oxide packages; the fix is in the repo-wide `docs/getting-started.md`. New todo: `todos/2026-11-01-fixture-date-format.md`.
