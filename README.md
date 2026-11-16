@@ -6,9 +6,9 @@ Three projects that started at hackathons between 2024 and 2025 and were reworke
   <img src="docs/images/nutrisha-recipe.webp" width="100%" alt="Nutrisha's Recipes page in the dark theme: an ingredient list with eggs, tomatoes and onion, one found recipe, Tomato and egg shakshuka, and its card with calories, protein, fat and carbohydrate, the ingredients and three steps">
 </p>
 
-**Status:** Finished projects, kept for reference. None is deployed. All three run on your own machine with SQLite. Only Nutrisha's recipe generator and chat need an outside service: its small Python service calls Ollama Cloud with your API key. The original repositories are no longer public; this repo keeps their history.
+**Status:** Finished projects, kept for reference, not deployed. All three run on your own machine with SQLite; the last check was on 2026-11-16. Only Nutrisha's recipe generator and chat need an outside service, Ollama Cloud, which its small Python service calls with your API key. The original repositories are no longer public; this repo keeps their history.
 
-## What is in it
+## What it does
 
 | Folder | What it is | Built with | Started |
 |---|---|---|---|
@@ -31,9 +31,9 @@ In June 2026 all three moved to npm workspaces and SQLite, and APIWatchdog and Y
 </tr>
 </table>
 
-## Run one
+## Run it locally
 
-Each folder installs and runs on its own. All three need Node 20 or newer. From the repo root, one at a time:
+Each folder installs and runs on its own. All three need Node 22.12 or newer. From the repo root, one at a time:
 
 ```bash
 cd APIWatchdog && npm install && npm run dev:be     # API on :3000, then `npm run dev:fe` in a second terminal
@@ -41,7 +41,7 @@ cd Yappinator-One-Thousand && npm install && npm run dev
 cd ITFest-Nutrisha && npm install && npm run build --workspace @nutrisha/shared && npm run dev:backend   # then `npm run dev:frontend`
 ```
 
-Each opens on http://localhost:5173. Ports, demo data, Nutrisha's LLM service and a fix for a missing native module on Linux: [docs/getting-started.md](docs/getting-started.md).
+Each opens on http://localhost:5173. On Linux, Yappinator's first `npm run dev` can stop on a missing native module. The fix, the ports, demo data and Nutrisha's LLM service are in [docs/getting-started.md](docs/getting-started.md).
 
 ## How the repo was made
 
@@ -55,4 +55,4 @@ Each project was its own repository first. In July 2026 they were merged here wi
 
 ## License
 
-Nutrisha and Yappinator carry their own MIT license files. APIWatchdog has none, so all rights are reserved for it.
+Nutrisha and Yappinator carry their own MIT license files: [ITFest-Nutrisha/LICENSE](ITFest-Nutrisha/LICENSE) and [Yappinator-One-Thousand/LICENSE](Yappinator-One-Thousand/LICENSE). APIWatchdog has none, so all rights are reserved for it.

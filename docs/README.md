@@ -4,7 +4,7 @@ Everything the main README links to, for the three projects in this repo.
 
 | Page | What it covers |
 |---|---|
-| [getting-started.md](getting-started.md) | How to install and run each project, with ports, data files and what was checked |
+| [getting-started.md](getting-started.md) | How to install and run each project, with ports, env vars, data files and what was checked |
 | [images/shots.md](images/shots.md) | How each README image was made, so the next refresh is a re-run |
 
 Each project keeps its own notes next to its code:
